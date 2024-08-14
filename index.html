@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Grid</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f4f4f4;
+        }
+
+        
+        .container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: scale(1.02);
+        }
+
+        .card:active {
+            transform: scale(1);
+        }
+
+        .img {
+            width: 250px;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        a {
+            text-decoration: none;
+            color: #3498db;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        h1{
+            margin: 20px;
+            font-size: 2em;
+            color: black;
+            
+        }
+    </style>
+</head>
+<body>
+    <h1>Discover Your Next Pick</h1>
+    <div class="container">
+        
+        <div class="card" data-id="1"><img class="img" src="interstellar.jpg" alt="Card 1"></div>
+        <div class="card" data-id="2"><img class="img" src="inception.jpeg" alt="Card 2"></div>
+        <div class="card" data-id="3"><img class="img" src="Joker.jpeg" alt="Card 3"></div>
+        <div class="card" data-id="4"><img class="img" src="Comjuring.jpeg" alt="Card 4"></div>
+        
+        <div class="card" data-id="5"><img class="img" src="attention.png" alt="Card 5"></div>
+        <div class="card" data-id="6"><img class="img" src="Hymn for the weekend.jpeg" alt="Card 6"></div>
+        <div class="card" data-id="7"><img class="img" src="Ignite.jpeg" alt="Card 7"></div>
+        <div class="card" data-id="8"><img class="img" src="soy.jpeg" alt="Card 8"></div>
+        
+        <div class="card" data-id="9"><img class="img" src="Loki.jpg" alt="Card 9"></div>
+        <div class="card" data-id="10"><img class="img" src="lucifer.jpeg" alt="Card 10"></div>
+        <div class="card" data-id="11"><img class="img" src="b99.jpg" alt="Card 11"></div>
+        <div class="card" data-id="12"><img class="img" src="bb.jpeg" alt="Card 12"></div>
+    </div>
+
+    <script>
+        const cardDetails = [
+            { text: "Details for Card 1", link: "https://www.imdb.com/title/tt0816692/" },
+            { text: "Details for Card 2", link: "https://www.imdb.com/title/tt1375666/" },
+            { text: "Details for Card 3", link: "https://www.imdb.com/title/tt7286456/" },
+            { text: "Details for Card 4", link: "https://www.imdb.com/title/tt1457767/" },
+            { text: "Details for Card 5", link: "https://www.youtube.com/watch?v=6QYcd7RggNU" },
+            { text: "Details for Card 6", link: "https://www.youtube.com/watch?v=YykjpeuMNEk" },
+            { text: "Details for Card 7", link: "https://www.youtube.com/watch?v=Az-mGR-CehY" },
+            { text: "Details for Card 8", link: "https://www.youtube.com/watch?v=JGwWNGJdvx8" },
+            { text: "Details for Card 9", link: "https://en.wikipedia.org/wiki/Loki_(TV_series)" },
+            { text: "Details for Card 10", link: "https://en.wikipedia.org/wiki/Lucifer_(TV_series)" },
+            { text: "Details for Card 11", link: "https://en.wikipedia.org/wiki/Brooklyn_Nine-Nine" },
+            { text: "Details for Card 12", link: "https://en.wikipedia.org/wiki/Breaking_Bad" }
+        ];
+
+        const cards = document.querySelectorAll('.card');
+        cards.forEach((card, index) => {
+            const link = cardDetails[index].link;
+            card.addEventListener('click', () => {
+                window.open(link, "_blank");
+            });
+        });
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const detail = urlParams.get('detail');
+
+        if (detail) {
+            document.body.innerHTML = `
+                <div class="detail-container">
+                    <h1>Card Details</h1>
+                    <p id="card-detail">${detail}</p>
+                    <a href="index.html">Back to Cards</a>
+                </div>
+            `;
+        }
+    </script> 
+</body>
+</html>
